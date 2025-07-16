@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/QFTCTq?referralCode=ePU7HL)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/mosquitto-broker?referralCode=ePU7HL)
 
 </div>
 
