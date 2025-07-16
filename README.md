@@ -20,3 +20,8 @@ Learn more about Mosquitto here: [Eclipse Mosquitto](https://mosquitto.org)
 
 - `MOSQUITTO_USERNAME`: Username used to publish and subscribe
 - `MOSQUITTO_PASSWORD`: Password used to publish and subscribe
+
+<h2>🛠️ Examples</h2>
+
+- [How to Publish (Python)](https://github.com/Lima-e-Silva/mosquitto-railway-template/wiki/How-to-Publish)
+- [How to Subscribe (Python)](https://github.com/Lima-e-Silva/mosquitto-railway-template/wiki/How-to-Subscribe)
