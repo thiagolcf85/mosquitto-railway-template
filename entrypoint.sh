@@ -1,21 +1,21 @@
 #!/bin/sh
 
-# Encerra o script se qualquer comando falhar
+# Shutdown on error
 set -e
 
-# Verifica se as variáveis de ambiente foram definidas
+# Check if MOSQUITTO_USERNAME and MOSQUITTO_PASSWORD environment variables are defined
 if [ -z "$MOSQUITTO_USERNAME" ] || [ -z "$MOSQUITTO_PASSWORD" ]; then
   echo "ERRO: As variáveis de ambiente MOSQUITTO_USERNAME e MOSQUITTO_PASSWORD precisam ser definidas."
   exit 1
 fi
 
-# Cria o arquivo de senha a partir das variáveis de ambiente
+# Create password file
 mosquitto_passwd -b -c /mosquitto/config/password_file "$MOSQUITTO_USERNAME" "$MOSQUITTO_PASSWORD"
 
-# Define "mosquitto" como proprietário do arquivo
+# Define "mosquitto" as owner of the password file
 chown mosquitto:mosquitto /mosquitto/config/password_file
 
-# Passa a execução para o comando original do contêiner (inicia o mosquitto)
-# "$@" representa todos os argumentos passados para o script, que no nosso caso
-# será o comando para iniciar o broker definido no Dockerfile.
+# Passes execution to the container's original command (starts Mosquitto)
+# "$@" represents all arguments passed to the script, which in our case
+# will be the command to start the broker defined in the Dockerfile.
 exec "$@"

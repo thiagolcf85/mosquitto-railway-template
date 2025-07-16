@@ -3,5 +3,4 @@
     dockerfilePath = "./Dockerfile"
 
 [volumes]
-    # Persistir dados
     mqtt_data = "/mosquitto/data"
