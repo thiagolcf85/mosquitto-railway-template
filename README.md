@@ -1,0 +1,21 @@
+<h1 align="center" style="font-weight: bold;">Mosquitto Railway Template</h1>
+
+<div align="center">
+
+![railway](https://img.shields.io/badge/Railway-d6d6d6?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiB2aWV3Qm94PSIwIDAgMTAyNCAxMDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik00Ljc1NiA0MzguMTc1QTUyMC43MTMgNTIwLjcxMyAwIDAgMCAwIDQ4OS43MzVoNzc3Ljc5OWMtMi43MTYtNS4zMDYtNi4zNjUtMTAuMDktMTAuMDQ1LTE0Ljc3Mi0xMzIuOTctMTcxLjc5MS0yMDQuNDk4LTE1Ni44OTYtMzA2LjgxOS0xNjEuMjYtMzQuMTE0LTEuNDAzLTU3LjI0OS0xLjk2Ny0xOTMuMDM3LTEuOTY3LTcyLjY3NyAwLTE1MS42ODguMTg1LTIyOC42MjguMzktOS45NiAyNi44ODQtMTkuNTY2IDUyLjk0Mi0yNC4yNDMgNzQuMTRoMzk4LjU3MXY1MS45MDlINC43NTZaTTc4My45MyA1NDEuNjk2SC4zOTljLjgyIDEzLjg1MSAyLjExMiAyNy41MTcgMy45NzggNDAuOTk5aDcyMy4zOWMzMi4yNDggMCA1MC4yOTktMTguMjk3IDU2LjE2Mi00MC45OTlaTTQ1LjAxNyA3MjQuMzA2UzE2NC45NDEgMTAxOC43NyA1MTEuNDYgMTAyNGMyMDcuMTEyIDAgMzg1LjA3MS0xMjMuMDA2IDQ2NS45MDctMjk5LjY5NEg0NS4wMTdaIiBmaWxsPSIjMTAwRjEzIi8+PHBhdGggZD0iTTUxMS40NTQgMEMzMTkuOTUzIDAgMTUzLjMxMSAxMDUuMTYgNjUuMzEgMjYwLjYxMmM2OC43NzEtLjE0NCAyMDIuNzA0LS4yMjYgMjAyLjcwNC0uMjI2aC4wMzF2LS4wNTFjMTU4LjMwOSAwIDE2NC4xOTMuNzA3IDE5NS4xMTggMS45OThsMTkuMTQ5LjcwNmM2Ni43IDIuMjI0IDE0OC42ODMgOS4zODQgMjEzLjE5IDU4LjE5IDM1LjAxNSAyNi40NzEgODUuNTcxIDg0Ljg5NiAxMTUuNzA4IDEyNi41MiAyNy44NjEgMzguNDk5IDM1Ljg3NiA4Mi43NTYgMTYuOTMzIDEyNS4xNTgtMTcuNDM2IDM4Ljk3LTU0Ljk1MiA2Mi4yMTUtMTAwLjM4MyA2Mi4yMTVIMTYuNjlzNC4yMzMgMTcuOTQ0IDEwLjU4IDM3Ljc1MWg5NzAuNjMyQTUxMC4zODUgNTEwLjM4NSAwIDAgMCAxMDI0IDUxMi4yMThDMTAyNC4wMSAyMjkuMzU1IDc5NC41MzIgMCA1MTEuNDU0IDBaIiBmaWxsPSIjMTAwRjEzIi8+PC9zdmc+)
+
+</div>
+
+<h2 id="info">📝 Info</h2>
+
+> Mosquitto is an open source (EPL/EDL licensed) message broker that implements the MQTT protocol versions 5.0, 3.1.1 and 3.1. Mosquitto is lightweight and is suitable for use on all devices from low power single board computers to full servers.
+[Eclipse Mosquitto](https://mosquitto.org)
+
+An MQTT message broker is a central component that enables communication between clients and IoT devices using the MQTT protocol. It follows the publish-subscribe (pub/sub) messaging model, which plays a crucial role in managing MQTT connections and performing data transmission.
+
+The broker receives messages from publishers, verifies their publishing rights, and queues messages according to their Quality of Service (QoS) levels. It further identifies authorised subscribers and routes them to appropriate subscribers.
+
+<h2 id="env">🔐 Variables</h2>
+
+- `MOSQUITTO_USERNAME`: Username used to publish and subscribe
+- `MOSQUITTO_PASSWORD`: Password used to publish and subscribe
