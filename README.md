@@ -12,7 +12,7 @@ Mosquitto is an open source (EPL/EDL licensed) message broker that implements th
 
 An MQTT message broker is a central component that enables communication between clients and IoT devices using the MQTT protocol. It follows the publish-subscribe (pub/sub) messaging model, which plays a crucial role in managing MQTT connections and performing data transmission.
 
-The broker receives messages from publishers, verifies their publishing rights, and queues messages according to their Quality of Service (QoS) levels. It further identifies authorised subscribers and routes them to appropriate subscribers.
+The broker receives messages from publishers, verifies their publishing rights, and queues messages according to their Quality of Service (QoS) levels. It further identifies authorized subscribers and routes them to appropriate subscribers.
 
 Learn more about Mosquitto here: [Eclipse Mosquitto](https://mosquitto.org)
 
