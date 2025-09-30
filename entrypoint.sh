@@ -12,8 +12,9 @@ fi
 # Create password file
 mosquitto_passwd -b -c /mosquitto/config/password_file "$MOSQUITTO_USERNAME" "$MOSQUITTO_PASSWORD"
 
-# Define "mosquitto" as owner of the password file
-chown mosquitto:mosquitto /mosquitto/config/password_file
+# Define "root" as owner of the password file to avoid warnings
+chown root:root /mosquitto/config/password_file
+chmod 640 /mosquitto/config/password_file
 
 # Passes execution to the container's original command (starts Mosquitto)
 # "$@" represents all arguments passed to the script, which in our case
