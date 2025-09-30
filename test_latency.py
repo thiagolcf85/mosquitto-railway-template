@@ -6,7 +6,8 @@ import sys
 
 # Configuration
 BROKER_HOST = "mosquitto-railway.up.railway.app"
-BROKER_PORT = 1883
+BROKER_PORT = 1883  # Standard MQTT port
+USE_WEBSOCKETS = False
 TOPIC = "test/latency"
 NUM_MESSAGES = 100
 
@@ -41,7 +42,10 @@ def test_latency(username, password):
     client.on_message = on_message
     
     try:
-        print(f"Connecting to {BROKER_HOST}...")
+        print(f"Connecting to {BROKER_HOST}:{BROKER_PORT}...")
+        if USE_WEBSOCKETS:
+            client.tls_set()
+            client.ws_set_options(path="/")
         client.connect(BROKER_HOST, BROKER_PORT, 60)
         client.loop_start()
         
