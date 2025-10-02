@@ -1,4 +1,4 @@
-<h1 align="center" style="font-weight: bold;">Mosquitto Railway Template</h1>
+<h1 align="center" style="font-weight: bold;">Mosquitto Railway Template - Otimizado para Baixa Latência</h1>
 
 <div align="center">
 
@@ -21,7 +21,27 @@ Learn more about Mosquitto here: [Eclipse Mosquitto](https://mosquitto.org)
 - `MOSQUITTO_USERNAME`: Username used to publish and subscribe
 - `MOSQUITTO_PASSWORD`: Password used to publish and subscribe
 
+<h2 id="performance">⚡ Otimizações de Performance</h2>
+
+Esta versão foi otimizada para alcançar a menor latência possível:
+
+- **TCP_NODELAY**: Desabilita o algoritmo de Nagle para reduzir delay
+- **Sem Persistência**: Remove I/O de disco para máxima velocidade
+- **QoS Máximo 1**: Reduz overhead de confirmações
+- **Buffers Otimizados**: Melhora throughput de mensagens
+- **Logging Mínimo**: Apenas erros e avisos para reduzir processamento
+- **Alpine Linux**: Imagem menor e mais rápida
+
+<h2 id="latency">📊 Latência Esperada</h2>
+
+- **Local**: < 1ms
+- **Mesma Região**: < 10ms
+- **Cross-Region**: 20-50ms (dependendo da distância)
+
+Para testar a latência, use o script `test_latency.py` incluído.
+
 <h2>🛠️ Examples</h2>
 
 - [How to Publish (Python)](https://github.com/Lima-e-Silva/mosquitto-railway-template/wiki/How-to-Publish)
 - [How to Subscribe (Python)](https://github.com/Lima-e-Silva/mosquitto-railway-template/wiki/How-to-Subscribe)
+- Script de teste de latência: `test_latency.py`

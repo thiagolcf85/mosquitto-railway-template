@@ -1,4 +1,5 @@
-FROM eclipse-mosquitto:latest
+# Dockerfile otimizado para baixa latência no Railway
+FROM eclipse-mosquitto:2.0.18-alpine
 
 # Copy custom configuration file
 COPY mosquitto.conf /mosquitto/config/mosquitto.conf
