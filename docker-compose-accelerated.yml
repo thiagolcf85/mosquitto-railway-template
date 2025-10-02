@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # Broker principal com aceleração
+  mosquitto-primary:
+    build: .
+    container_name: mosquitto_accelerated_primary
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto_accelerated.conf:/mosquitto/config/mosquitto.conf
+      - ./data:/mosquitto/data
+      - ./log:/mosquitto/log
+      - ./certs:/mosquitto/certs
+    environment:
+      - MOSQUITTO_USERNAME=${MOSQUITTO_USERNAME:-admin_mosquitto}
+      - MOSQUITTO_PASSWORD=${MOSQUITTO_PASSWORD:-sl977w05jmmqzbgr4g4v27x4umxyf01z}
+    restart: unless-stopped
+    networks:
+      - mqtt_accelerated
+    sysctls:
+      - net.ipv4.tcp_nodelay=1
+      - net.core.rmem_max=134217728
+      - net.core.wmem_max=134217728
+
+  # Cache local para aceleração
+  mosquitto-cache:
+    image: eclipse-mosquitto:2.0.22
+    container_name: mosquitto_cache_local
+    ports:
+      - "1884:1883"
+    volumes:
+      - ./mosquitto_cache.conf:/mosquitto/config/mosquitto.conf
+      - ./cache_data:/mosquitto/data
+    restart: unless-stopped
+    networks:
+      - mqtt_accelerated
+    command: mosquitto -c /mosquitto/config/mosquitto.conf
+
+  # Proxy/Load Balancer usando HAProxy
+  mqtt-proxy:
+    image: haproxy:2.8-alpine
+    container_name: mqtt_load_balancer
+    ports:
+      - "1885:1883"  # Porta de entrada balanceada
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - mosquitto-primary
+      - mosquitto-cache
+    restart: unless-stopped
+    networks:
+      - mqtt_accelerated
+
+  # Monitor de performance
+  mosquitto-monitor:
+    image: prom/prometheus:latest
+    container_name: mqtt_monitor
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: unless-stopped
+    networks:
+      - mqtt_accelerated
+
+networks:
+  mqtt_accelerated:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  data:
+  cache_data:
+  log:
