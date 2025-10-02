@@ -12,12 +12,9 @@ fi
 # Create password file as root
 mosquitto_passwd -b -c /mosquitto/config/password_file "$MOSQUITTO_USERNAME" "$MOSQUITTO_PASSWORD"
 
-# Set proper ownership and permissions (root ownership as required by Mosquitto 2.0.22)
-chown root:root /mosquitto/config/password_file
-chmod 640 /mosquitto/config/password_file
-
-# Ensure mosquitto user can read the file
-chgrp mosquitto /mosquitto/config/password_file
+# Set proper ownership and permissions for Mosquitto 2.0.22
+chown mosquitto:mosquitto /mosquitto/config/password_file
+chmod 600 /mosquitto/config/password_file
 
 # Now switch to mosquitto user and execute mosquitto
 # Use su-exec if available (alpine), otherwise use su
