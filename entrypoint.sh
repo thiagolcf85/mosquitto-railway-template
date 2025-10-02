@@ -9,14 +9,20 @@ if [ -z "$MOSQUITTO_USERNAME" ] || [ -z "$MOSQUITTO_PASSWORD" ]; then
   exit 1
 fi
 
-# Create password file
+# Create password file as root
 mosquitto_passwd -b -c /mosquitto/config/password_file "$MOSQUITTO_USERNAME" "$MOSQUITTO_PASSWORD"
 
 # Set proper ownership and permissions (root ownership as required by Mosquitto 2.0.22)
 chown root:root /mosquitto/config/password_file
 chmod 640 /mosquitto/config/password_file
 
-# Passes execution to the container's original command (starts Mosquitto)
-# "$@" represents all arguments passed to the script, which in our case
-# will be the command to start the broker defined in the Dockerfile.
-exec "$@"
+# Ensure mosquitto user can read the file
+chgrp mosquitto /mosquitto/config/password_file
+
+# Now switch to mosquitto user and execute mosquitto
+# Use su-exec if available (alpine), otherwise use su
+if command -v su-exec > /dev/null 2>&1; then
+    exec su-exec mosquitto "$@"
+else
+    exec su mosquitto -s /bin/sh -c "$*"
+fi
